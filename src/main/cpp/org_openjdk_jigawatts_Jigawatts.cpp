@@ -113,6 +113,7 @@ JNIEXPORT int JNICALL Java_org_openjdk_jigawatts_Jigawatts_saveTheWorldNative (J
 
     criu_set_log_file((char *) "save.log");
     criu_set_leave_running(false);
+    criu_set_file_locks(true);
 
 
     criu_set_ext_unix_sk(true);
