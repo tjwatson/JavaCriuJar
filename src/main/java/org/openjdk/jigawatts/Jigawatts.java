@@ -69,7 +69,7 @@ public class Jigawatts {
 
     private native void checkTheWorldNative();
 
-    private native void saveTheWorldNative(String dir);
+    private native int saveTheWorldNative(String dir);
 
     private native void restoreTheWorldNative(String dir);
 
@@ -81,13 +81,13 @@ public class Jigawatts {
         crContext.checkTheWorldNative();
     }
 
-    public static void saveTheWorld(String dir) throws IOException {
+    public static int saveTheWorld(String dir) throws IOException {
         for (Hook h : checkpointHooks) {
             h.run();
         }
 
         writeRestoreHooks(dir);
-        crContext.saveTheWorldNative(dir);
+        return crContext.saveTheWorldNative(dir);
     }
 
     public static void writeRestoreHooks(String dir) throws IOException {

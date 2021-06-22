@@ -84,7 +84,7 @@ JNIEXPORT void JNICALL Java_org_openjdk_jigawatts_Jigawatts_checkTheWorldNative
  * Method:    SaveTheWorldNative
  * Signature: (Ljava/lang/String;)V
  */
-JNIEXPORT void JNICALL Java_org_openjdk_jigawatts_Jigawatts_saveTheWorldNative (JNIEnv * env, jobject jobj, jstring jstr) {
+JNIEXPORT int JNICALL Java_org_openjdk_jigawatts_Jigawatts_saveTheWorldNative (JNIEnv * env, jobject jobj, jstring jstr) {
     const char * path = env->GetStringUTFChars(jstr, NULL);
     struct stat st = {0};
 
@@ -124,6 +124,7 @@ JNIEXPORT void JNICALL Java_org_openjdk_jigawatts_Jigawatts_saveTheWorldNative (
       printf("Error from dump %d\n", ret);
       perror("Dump Error");
     }
+    return ret;
 }
 
 /*
